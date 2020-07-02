@@ -1,0 +1,113 @@
+.pagina {
+  max-width: 100%;
+}
+
+.area-header {
+  margin-bottom: 1em;
+}
+
+.bg-blue-custom {
+  background: #30cced;
+}
+
+.nav-botao {
+  margin-left: 1em;
+  margin-top: 0.1em;
+}
+
+.nav-titulo {
+  padding: 0 1em;
+}
+
+.nav-titulo svg {
+  margin-right: .25em;
+}
+
+footer.rodape div div {
+  background-color: lightblue;
+  padding: 1em;
+  margin-top: 1em;
+}
+
+footer.rodape div div label {
+  color: black;
+  padding-left: 1em;
+}
+
+.imagem_veiculo {
+  width: 500px;
+  height: 333px;
+}
+
+.imagem_bandeira {
+  width: 50px;
+  height: 26px;
+}
+
+.area-busca {
+  margin: 1em 0;
+}
+
+.dropzone {
+  height: 300px;
+  background: #E1FAEC;
+  border-radius: 10px;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 48px;
+  outline: 0;
+}
+
+.dropzone img {
+  width: 100%;
+  height: 100%; 
+  object-fit: cover;
+}
+
+.dropzone p {
+  width: calc(100% - 60px);
+  height: calc(100% - 60px);
+  border-radius: 10px;
+  border: 1px dashed #4ECB79;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  color: #333;
+}
+
+.dropzone p svg {
+  color: #4ECB79;
+  width: 24px;
+  height: 24px;
+  margin-bottom: 8px;
+}
+
+.campo-cadastro, .campo-busca {
+  margin-bottom: 0;
+}
+
+.campo-detalhe-item-imagem {
+  text-align: center;
+  margin: 1em 0;
+}
+
+.campo-detalhe-item-imagem img {
+  border-radius: 1em;
+  border: 1.2px solid #ced4da;
+}
+
+.campo-detalhe-item {
+  margin: .5em 0 0 0;
+}
+
+.area-botoes button {
+  margin-right: .5em;
+}
+
+.area-item-botao button {
+  width: 100%;
+}
