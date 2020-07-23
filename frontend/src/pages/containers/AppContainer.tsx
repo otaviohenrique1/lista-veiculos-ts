@@ -7,6 +7,7 @@ import Lista from '../components/Lista';
 import Cadastro from '../components/Cadastro';
 import Home from '../components/Home';
 import ListaItemDetalhes from '../components/ListaItemDetalhes';
+import AppCounter from "../containers/AppCounter";
 
 const AppContainer = () => {
     return (
@@ -18,6 +19,7 @@ const AppContainer = () => {
                     <Route exact component={Lista} path="/lista" />
                     <Route exact component={Cadastro} path="/cadastro" />
                     <Route exact component={ListaItemDetalhes} path="/detalhes" />
+                    <Route exact component={AppCounter} path="/contador" />
                 </Switch>
                 <Footer/>
             </BrowserRouter>

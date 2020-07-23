@@ -11,7 +11,7 @@
 }
 
 .nav-botao {
-  margin-left: 1em;
+  margin-left: .60em;
   margin-top: 0.1em;
 }
 
@@ -21,6 +21,10 @@
 
 .nav-titulo svg {
   margin-right: .25em;
+}
+
+.nav-titulo label {
+  cursor: pointer;
 }
 
 footer.rodape div div {
@@ -52,12 +56,12 @@ footer.rodape div div label {
   height: 300px;
   background: #E1FAEC;
   border-radius: 10px;
-
   display: flex;
   justify-content: center;
   align-items: center;
-  margin-top: 48px;
   outline: 0;
+  margin: 1em;
+  width: 100%;
 }
 
 .dropzone img {
@@ -110,4 +114,23 @@ footer.rodape div div label {
 
 .area-item-botao button {
   width: 100%;
+}
+
+.area-contador {
+  width: 100%;
+}
+
+.area-contador h1 {
+  text-align: center;
+}
+
+.area-contador div {
+  text-align: center;
+}
+
+.area-contador div button {
+  margin: 1em;
+  padding: 2em;
+  width: 20%;
+  height: 100%;
 }

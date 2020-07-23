@@ -3,45 +3,91 @@ import { Container, Button, Form, FormGroup, Row, Col } from "reactstrap";
 import Titulo from "./Titulo";
 import './../../App.css';
 import Campo from "./Campo";
+import Dropzone from './Dropzone';
+// import Mensagem from './Mensagem';
+import { useHistory } from "react-router-dom";
+import api from "../../services/api";
+// import axios from "axios";
+// import no_image_available from "./assets/no_image_available.png";
+// import no_image_available2 from "../components/assets/no_image_available.png";
+import path from "path";
 
 const Cadastro = () => {
     const [selectedFile, setSelectedFile] = useState<File>();
-    const [erro, setErro] = useState<boolean>(false);
+    // const [erro, setErro] = useState<boolean>(false);
+    // const [mensagemErro, setMensagemErro] = useState<string>('');
+    // const [mensagem, setMensagem] = useState<string>('');
     const [formData, setFormData] = useState({
-        nome: '',
-        paisOrigem: '',
-        tipo: '',
-        fabricante: '',
-        utilizadores: '',
-        quantidadeProduzida: 0,
-        peridoServico: '',
-        massa: 0,
-        comprimento: 0,
-        altura: 0,
-        largura: 0,
-        tripulacao: 0,
-        custoUnitario: 0,
-        armamento: '',
+        nome: '', paisOrigem: '', tipo: '', fabricante: '',
+        utilizadores: '', quantidadeProduzida: 0, peridoServico: '',
+        massa: 0, comprimento: 0, altura: 0, largura: 0, tripulacao: 0,
+        custoUnitario: 0, armamento: '',
     });
+    const history = useHistory();
     
     function handleInputChange(event: ChangeEvent<HTMLInputElement>) {
         const { name, value } = event.target;
         setFormData({...formData, [name]: value});
     }
     
-    function validaCampo(campo: any): boolean {
-        return campo === '';
-    }
+    // function validaCampo(campo: any): boolean {
+    //     return campo === '';
+    // }
 
-    function handleSubmit(event: FormEvent) {
+    async function handleSubmit(event: FormEvent) {
         event.preventDefault();
-        // if (formData.nome === '') {
-        //     console.log("Campo vazio");
+        // if (
+        //     formData.nome === '' ||
+        //     formData.paisOrigem === '' ||
+        //     formData.tipo === '' ||
+        //     formData.fabricante === '' ||
+        //     formData.utilizadores === '' ||
+        //     formData.quantidadeProduzida === 0 ||
+        //     formData.peridoServico === '' ||
+        //     formData.massa === 0 ||
+        //     formData.comprimento === 0 ||
+        //     formData.altura === 0 ||
+        //     formData.largura === 0 ||
+        //     formData.tripulacao === 0 ||
+        //     formData.custoUnitario === 0 ||
+        //     formData.armamento === ''
+        // ) {
+        //     // console.log("Campo vazio");
+        //     setErro(true);
+        //     setMensagemErro("Campo vazio");
         //     return;
-        // } else {
-        //     console.log("Cadastrado");
         // }
-        console.log("Cadastrado");
+        // setErro(false);
+        // setMensagemErro('');
+        // console.log("Cadastrado");
+        
+        const { nome, paisOrigem, tipo, fabricante, utilizadores, quantidadeProduzida, peridoServico, massa, comprimento, altura, largura, tripulacao, custoUnitario, armamento } = formData;
+
+        const data = new FormData();
+        
+        data.append('nome', nome);
+        data.append('paisOrigem', paisOrigem);
+        data.append('tipo', tipo);
+        data.append('fabricante', fabricante);
+        data.append('utilizadores', utilizadores);
+        data.append('quantidadeProduzida', String(quantidadeProduzida));
+        data.append('peridoServico', peridoServico);
+        data.append('massa', String(massa));
+        data.append('comprimento', String(comprimento));
+        data.append('altura', String(altura));
+        data.append('largura', String(largura));
+        data.append('tripulacao', String(tripulacao));
+        data.append('custoUnitario', String(custoUnitario));
+        data.append('armamento', armamento);
+        if (selectedFile) {
+            data.append('image', selectedFile);
+        } else {
+            // data.append('image', no_image_available);
+            data.append('image', path.resolve(__dirname, "..", "components", "assets", "no_image_available.png"));
+            console.log("Sem imagem");
+        }
+        await api.post('veiculos', data);
+        history.push('/lista');
     }
     
     return (
@@ -50,20 +96,14 @@ const Cadastro = () => {
                 texto="Cadastro"
                 elemento="h1"
             />
+            {/* {
+                (erro) ?
+                    <Mensagem mensagem={mensagemErro} color="danger" /> :
+                    <div></div>
+            } */}
             <Form onSubmit={handleSubmit}>
                 <Row>
-                    {/* <Campo
-                        // Campo provisorio
-                        md={12}
-                        addonType="prepend"
-                        labelClassName="campo-cadastro"
-                        labelHtmlFor="imagem"
-                        labelTexto="Imagem"
-                        type="text"
-                        name="imagem"
-                        id="imagem"
-                        value='[Local do dropzone da imagem]'
-                    /> */}
+                    <Dropzone onFileUploaded={setSelectedFile} />
                     <Campo
                         md={12}
                         addonType="prepend"
@@ -75,6 +115,8 @@ const Cadastro = () => {
                         id="nome"
                         onChange={handleInputChange}
                         required={true}
+                        // erro={erro}
+                        // erroMensagem={mensagemErro}
                     />
                     <Campo
                         md={6}
@@ -87,6 +129,8 @@ const Cadastro = () => {
                         id="pais_origem"
                         onChange={handleInputChange}
                         required={true}
+                        // erro={erro}
+                        // erroMensagem={mensagemErro}
                     />
                     <Campo
                         md={6}
@@ -99,6 +143,8 @@ const Cadastro = () => {
                         id="tipo"
                         onChange={handleInputChange}
                         required={true}
+                        // erro={erro}
+                        // erroMensagem={mensagemErro}
                     />
                     <Campo
                         md={6}
@@ -111,6 +157,8 @@ const Cadastro = () => {
                         id="fabricante"
                         onChange={handleInputChange}
                         required={true}
+                        // erro={erro}
+                        // erroMensagem={mensagemErro}
                     />
                     <Campo
                         md={6}
@@ -123,6 +171,8 @@ const Cadastro = () => {
                         id="utilizadores"
                         onChange={handleInputChange}
                         required={true}
+                        // erro={erro}
+                        // erroMensagem={mensagemErro}
                     />
                     <Campo
                         md={6}
@@ -135,6 +185,8 @@ const Cadastro = () => {
                         id="quantidade_produzida"
                         onChange={handleInputChange}
                         required={true}
+                        // erro={erro}
+                        // erroMensagem={mensagemErro}
                     />
                     <Campo
                         md={6}
@@ -146,6 +198,8 @@ const Cadastro = () => {
                         id="perido_servico"
                         onChange={handleInputChange}
                         required={true}
+                        // erro={erro}
+                        // erroMensagem={mensagemErro}
                     />
                     <Campo
                         md={6}
@@ -158,6 +212,8 @@ const Cadastro = () => {
                         id="massa"
                         onChange={handleInputChange}
                         required={true}
+                        // erro={erro}
+                        // erroMensagem={mensagemErro}
                     />
                     <Campo
                         md={6}
@@ -170,6 +226,8 @@ const Cadastro = () => {
                         id="comprimento"
                         onChange={handleInputChange}
                         required={true}
+                        // erro={erro}
+                        // erroMensagem={mensagemErro}
                     />
                     <Campo
                         md={6}
@@ -182,6 +240,8 @@ const Cadastro = () => {
                         id="altura"
                         onChange={handleInputChange}
                         required={true}
+                        // erro={erro}
+                        // erroMensagem={mensagemErro}
                     />
                     <Campo
                         md={6}
@@ -194,6 +254,8 @@ const Cadastro = () => {
                         id="largura"
                         onChange={handleInputChange}
                         required={true}
+                        // erro={erro}
+                        // erroMensagem={mensagemErro}
                     />
                     <Campo
                         md={6}
@@ -206,6 +268,8 @@ const Cadastro = () => {
                         id="tripulacao"
                         onChange={handleInputChange}
                         required={true}
+                        // erro={erro}
+                        // erroMensagem={mensagemErro}
                     />
                     <Campo
                         md={6}
@@ -218,6 +282,8 @@ const Cadastro = () => {
                         id="custo_unitario"
                         onChange={handleInputChange}
                         required={true}
+                        // erro={erro}
+                        // erroMensagem={mensagemErro}
                     />
                     <Campo
                         md={12}
@@ -230,10 +296,12 @@ const Cadastro = () => {
                         id="armamento"
                         onChange={handleInputChange}
                         required={true}
+                        // erro={erro}
+                        // erroMensagem={mensagemErro}
                     />
                     <Col md={12}>
                         <FormGroup className="area-botoes">
-                            <Button type="button" color="primary">Salvar</Button>
+                            <Button type="submit" color="primary">Salvar</Button>
                             <Button type="reset" color="danger">Limpar</Button>
                         </FormGroup>
                     </Col>

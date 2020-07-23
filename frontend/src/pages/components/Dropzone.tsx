@@ -33,7 +33,7 @@ const Dropzone: React.FC<Props> = ({ onFileUploaded }) => {
                     <img src={selectedFileUrl} alt="Point thumbmail"/> : (
                         <p>
                             <FiUpload />
-                            Imagem do estabelecimento
+                            Imagem do Veiculo
                         </p>
                     )
                 // isDragActive ?

@@ -18,8 +18,8 @@ const Header = () => {
                 <NavbarBrand>
                     <Link to="/">
                         <div className="nav-titulo">
-                            <FaRegListAlt size={27}/>
-                            <Label>Lista veiculos</Label>
+                            {/* <FaRegListAlt size={27}/> */}
+                            <Label><FaRegListAlt size={30}/>Lista veiculos</Label>
                         </div>
                     </Link>
                 </NavbarBrand>
@@ -34,6 +34,11 @@ const Header = () => {
                         <NavItem>
                             <Link to="/cadastro">
                                 <Button className="nav-botao" color="secondary"><MdPlaylistAdd/> Cadastro</Button>
+                            </Link>
+                        </NavItem>
+                        <NavItem>
+                            <Link to="/contador">
+                                <Button className="nav-botao" color="secondary"><MdPlaylistAdd/> Contador</Button>
                             </Link>
                         </NavItem>
                     </Nav>

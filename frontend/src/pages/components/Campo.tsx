@@ -1,5 +1,8 @@
 import React, { ChangeEvent } from 'react';
-import { Label, Input, Col, InputGroup, InputGroupAddon, InputGroupText, FormGroup } from "reactstrap";
+import { Label, Input, Col, InputGroup, InputGroupAddon, InputGroupText, FormGroup
+    // , FormFeedback
+} from "reactstrap";
+// import Mensagem from './Mensagem';
 
 interface Props {
     md?: number;
@@ -15,9 +18,13 @@ interface Props {
     onChange?: ((event: ChangeEvent<HTMLInputElement>) => void);
     readOnly?: boolean;
     required?: boolean;
+    erro?: boolean;
+    erroMensagem?: string;
 }
 
-const Campo: React.FC<Props> = ({ md, addonType, labelClassName, labelHtmlFor, labelTexto, type, value, name, id, onChange, className, readOnly, required }) => {
+const Campo: React.FC<Props> = ({ md, addonType, labelClassName, labelHtmlFor, labelTexto, type, value, name, id, onChange, className, readOnly, required
+    // , erro, erroMensagem
+}) => {
     return (
         <Col md={md} className={className}>
             <FormGroup>
@@ -27,9 +34,25 @@ const Campo: React.FC<Props> = ({ md, addonType, labelClassName, labelHtmlFor, l
                             <Label className={labelClassName} htmlFor={labelHtmlFor}>{labelTexto}</Label>
                         </InputGroupText>
                     </InputGroupAddon>
-                    <Input type={type} readOnly={readOnly} value={value} name={name} id={id} onChange={onChange} required={required}/>
+                    <Input
+                        type={type}
+                        readOnly={readOnly}
+                        value={value}
+                        name={name}
+                        id={id}
+                        onChange={onChange}
+                        required={required}
+                        // invalid={erro}
+                        // valid={erro}
+                    />
+                    {/* <FormFeedback>{erroMensagem}</FormFeedback> */}
                 </InputGroup>
             </FormGroup>
+            {/* {
+                (erro) ?
+                    <Mensagem mensagem={erroMensagem} color="danger" /> :
+                    null
+            } */}
         </Col>
     );
 };
