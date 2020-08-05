@@ -194,7 +194,8 @@ const Cadastro = () => {
                         labelClassName="campo-cadastro"
                         labelHtmlFor="perido_servico"
                         labelTexto="Perido de serviço"
-                        type="text" name="perido_servico"
+                        type="text"
+                        name="perido_servico"
                         id="perido_servico"
                         onChange={handleInputChange}
                         required={true}
